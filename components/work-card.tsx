@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { extractYear, formatFee } from "@/lib/utils"
 
 interface WorkCardProps {
   title: string
@@ -59,7 +60,7 @@ export default function WorkCard({
 
               <div className="border-r border-gray-200 px-4">
                 <p className="text-xs text-gray-500 uppercase mb-1">FEE CHARGED</p>
-                <p className="font-bold">{feeCharged}</p>
+                <p className="font-bold">{formatFee(feeCharged)}</p>
               </div>
 
               <div className="pl-4">

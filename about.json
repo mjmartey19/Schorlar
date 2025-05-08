@@ -1,0 +1,28 @@
+{
+  "_type": "about",
+  "name": "Scholar",
+  "role": "Director of Design",
+  "company": "ScholarStudio",
+  "bio": [
+    "I appreciate your time in exploring my portfolio and design endeavors. As a proficient graphic designer based in Accra, Ghana, I bring a wealth of experience in website, UI, and web development to the table.",
+    "I am passionate about making sure that systems, interfaces, language and graphics are human-friendly, emotive, aesthetically pleasing, clear, on-brand and usable — with a touch of mellow smoothness."
+  ],
+  "heroImage": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-hebbkx1anhila5yf.public.blob.vercel-storage.com/RETOUCH_IMG_3731.jpg-jqqzOXUVXHnAI49axTLuCCR7O5gAvc.jpeg"
+    },
+    "alt": "Scholar - Designer"
+  },
+  "aboutImage": {
+    "_type": "image",
+    "asset": {
+      "_type": "reference",
+      "_ref": "image-hebbkx1anhila5yf.public.blob.vercel-storage.com/RETOUCHED_IMG_3729.jpg-wvxMtggnPKHNKW1uV1UKXZOXK47moK.jpeg"
+    },
+    "alt": "Scholar"
+  },
+  "projectsCompleted": 50,
+  "yearsExperience": 3
+}

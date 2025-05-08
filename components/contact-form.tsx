@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { sendContactEmail } from "@/app/actions/contact"
+
 import { motion } from "framer-motion"
+import { sendContactEmail } from "@/app/(main)/actions/contact"
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)

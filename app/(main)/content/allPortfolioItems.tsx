@@ -9,7 +9,6 @@ export const allPortfolioItems = [
         image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/web-3.png-dsVwLIMJHEDLUTurrGFTLb6EPIxCXI.jpeg",
         slug: "orange-december",
         client: "Bonvas Tours",
-        year: "2024"
     },
     {
         id: "w3",
@@ -93,7 +92,6 @@ export const allPortfolioItems = [
         image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/web-5-S6d1TrEKClzWCAzmwO7NjzmCOSFce8.png",
         slug: "bonvas-adventure",
         client: "Bonvas Tours",
-        year: "2024"
     },
     {
         id: "w1",

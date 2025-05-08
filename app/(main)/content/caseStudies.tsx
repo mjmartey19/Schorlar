@@ -284,7 +284,7 @@ export const caseStudies = {
         testimonial: {
             quote:
                 "Scholar created exactly what we needed - a website that makes our food look as delicious as it tastes while helping protect our customers from scams. Our online orders have increased significantly since launch.",
-            author: "Kwame Mensah, Owner of Pizza Man Chicken Man",
+            author: "Essuman-Amankwah Ebenezer, Co-founder & Chief Operations Manager of Pizzaman Chickenman",
         },
         nextProject: "specks-kitchen",
         prevProject: "enfoni",
