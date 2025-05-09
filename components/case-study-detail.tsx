@@ -9,6 +9,7 @@ import BackToTop from "@/components/back-to-top"
 import { PortableText } from '@portabletext/react'
 import type { PortableTextComponents } from '@portabletext/react'
 import { extractYear, formatFee } from "@/lib/utils"
+import WorkCard from "./work-card"
 
 interface CaseStudyDetailProps {
     caseStudy: any
@@ -58,11 +59,12 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
     // Get related works based on the current case study category
     const relatedWorks = allCaseStudies
         .filter((item) =>
-            item.project.category === caseStudy.project.category &&
-            item.project.slug.current !== caseStudy.project.slug.current
+            item.project.category === caseStudy.project.category && item.project.slug !== caseStudy.project.slug
         )
         .slice(0, 4)
 
+    // console.log("All Case Studies", allCaseStudies)
+    // console.log("RelatedWorks", relatedWorks);
     return (
         <div className="pt-20">
             {/* Back to Top Button */}
@@ -222,27 +224,17 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                 <section className="py-16 bg-gray-50">
                     <div className="container">
                         <h2 className="text-3xl font-bold mb-8 text-center">Related Works</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {relatedWorks.map((item) => (
-                                <div
-                                    key={item._id}
-                                    className="rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
-                                >
-                                    <Image
-                                        src={item.project.image || "/placeholder.svg"}
-                                        alt={item.project.title}
-                                        width={600}
-                                        height={400}
-                                        className="w-full h-48 object-cover"
-                                    />
-                                    <div className="p-4">
-                                        <h3 className="text-xl font-semibold mb-2">{item.project.title}</h3>
-                                        <p className="text-gray-600 text-sm">{item.project.category}</p>
-                                        <Button asChild variant="link" className="mt-4">
-                                            <Link href={`/case-study/${item.project.slug.current}`}>View Case Study</Link>
-                                        </Button>
-                                    </div>
-                                </div>
+                                <WorkCard
+                                key={item.project._id}
+                                title={item.project.title}
+                                image={item.project.image}
+                                completionTime={item.project.completionTime}
+                                feeCharged={item.project.feeCharged}
+                                slug={item.project.slug.current}
+                                client={item.project.client}
+                            />
                             ))}
                         </div>
                     </div>
