@@ -80,7 +80,7 @@ export default function HomePage({ featuredProjects, services, testimonials, abo
                             className="order-1 lg:order-2"
                         >
                             <div className="relative group">
-                                <div className="aspect-[6/5] relative overflow-hidden rounded-md">
+                                <div className="aspect-[5/5] relative overflow-hidden rounded-md">
                                    
                                     <Image
                                         src={
@@ -89,7 +89,7 @@ export default function HomePage({ featuredProjects, services, testimonials, abo
                                         }
                                         alt={`${about?.name || "Scholar"} - Designer`}
                                         fill
-                                        className="object-cover rounded-md"
+                                        className="object-cover rounded-md bg-center"
                                         priority
                                     />
                                 </div>
