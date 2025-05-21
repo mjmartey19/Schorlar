@@ -1,6 +1,9 @@
 import CaseStudyDetail from "@/components/case-study-detail"
 import { getCaseStudyBySlug, getCaseStudies } from "@/lib/api"
 import { notFound } from "next/navigation"
+import type { Metadata } from "next"
+import { generateMetadata as baseGenerateMetadata } from "@/lib/seo-config"
+import { ProjectJsonLd } from "@/components/json-ld"
 
 export const revalidate = 60 // Revalidate this page every 60 seconds
 
@@ -18,6 +21,30 @@ export async function generateStaticParams() {
     }))
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const slug = (await params).slug
+
+  // Try to get from Sanity first
+  let caseStudy = await getCaseStudyBySlug(slug)
+
+  if (!caseStudy) {
+    return baseGenerateMetadata({
+      title: "Case Study Not Found",
+      description: "The requested case study could not be found.",
+      path: `/case-study/${slug}`,
+    })
+  }
+
+  return baseGenerateMetadata({
+    title: `${caseStudy.title} | Case Study`,
+    description: caseStudy.overview
+      ? caseStudy.overview.substring(0, 160)
+      : `Case study for ${caseStudy.title} - ${caseStudy.category} project for ${caseStudy.client}`,
+    path: `/case-study/${slug}`,
+    ogImage: caseStudy.image,
+  })
+}
+
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const  slug  = (await params).slug
   const caseStudy = await getCaseStudyBySlug(slug)
@@ -29,5 +56,18 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   // Get all case studies for related works
   const allCaseStudies = await getCaseStudies()
 
-  return <CaseStudyDetail caseStudy={caseStudy} allCaseStudies={allCaseStudies} />
+  
+
+  return
+  <>
+    <ProjectJsonLd
+      name={caseStudy.title}
+      description={caseStudy.overview || `Case study for ${caseStudy.title}`}
+      image={caseStudy.image}
+      datePublished={caseStudy.year ? `${caseStudy.year}-01-01` : "2023-01-01"}
+      author={caseStudy.client}
+      url={`https://schorlar.com/case-study/${slug}`}
+    />
+  <CaseStudyDetail caseStudy={caseStudy} allCaseStudies={allCaseStudies} />
+  </>
 }

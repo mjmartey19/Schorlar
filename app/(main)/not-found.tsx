@@ -1,10 +1,18 @@
 "use client"
-
+import type { Metadata } from "next"
+import { generateMetadata } from "@/lib/seo-config"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { ArrowLeft } from "lucide-react"
 
+export const metadata: Metadata = generateMetadata({
+    title: "Page Not Found | 404",
+    description:
+        "The page you're looking for doesn't exist or has been moved. Explore our graphic design portfolio while you're here.",
+    path: "/404",
+})
+  
 // Animation variants
 const fadeIn = {
     hidden: { opacity: 0, y: 20 },
