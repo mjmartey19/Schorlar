@@ -1,12 +1,12 @@
-import { projects as Allprojects, getCaseStudies } from "@/lib/api"
+import {getCaseStudies } from "@/lib/api"
 import { siteConfig } from "@/lib/seo-config"
 import type { MetadataRoute } from "next"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url
 
-  // Get all projects and case studies
-  const projects = await Allprojects()
+  // Get case studies
+
   const caseStudies = await getCaseStudies()
 
   // Static routes
@@ -44,12 +44,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   // Dynamic routes for case studies
-  const caseStudyRoutes = caseStudies.map((study: any) => ({
+  const caseStudyRoutes = caseStudies
+  .filter((study: any) => study?.slug?.current)
+  .map((study: any) => ({
     url: `${baseUrl}/case-study/${study.slug.current}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }))
+
 
   return [...routes, ...caseStudyRoutes]
 }

@@ -29,10 +29,6 @@ export const siteConfig = {
       url: "https://schorlar.com",
     },
     creator: "Jamel Martey",
-    themeColor: [
-      { media: "(prefers-color-scheme: light)", color: "white" },
-      { media: "(prefers-color-scheme: dark)", color: "#000000" },
-    ],
   }
   
   // Helper function to generate metadata for each page
