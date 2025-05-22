@@ -7,7 +7,7 @@ import { WebsiteJsonLd, OrganizationJsonLd, PersonJsonLd } from "@/components/js
 export const revalidate = 60 // Revalidate this page every 60 seconds
 
 export const metadata: Metadata = generateMetadata({
-  title: `${siteConfig.name} | Creative Designer & Developer in Accra, Ghana`,
+  title: `${siteConfig.name} | Creative Designer & Developer`,
   description:
     "Experienced web designer and developer specializing in Mobile & Web Application, Graphic Design, UI/UX and Creative Digital Solutions.",
   path: "/",
