@@ -227,7 +227,7 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {relatedWorks.map((item) => (
                                 <WorkCard
-                                key={item.project._id}
+                                    key={item.project._id + item.project.image}
                                 title={item.project.title}
                                 image={item.project.image}
                                 completionTime={item.project.completionTime}

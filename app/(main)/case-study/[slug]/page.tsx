@@ -36,12 +36,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return baseGenerateMetadata({
-    title: `${caseStudy.title} | Case Study`,
-    description: caseStudy.overview
-      ? caseStudy.overview.substring(0, 160)
-      : `Case study for ${caseStudy.title} - ${caseStudy.category} project for ${caseStudy.client}`,
+    title: `${caseStudy.project.title} | Case Study`,
+    description: `Case study for ${caseStudy.project.title} - ${caseStudy.project.category} project for ${caseStudy.project.client}`,
     path: `/case-study/${slug}`,
-    ogImage: caseStudy.image,
+    ogImage: caseStudy.project.image,
   })
 }
 
@@ -58,16 +56,17 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   
 
-  return
-  <>
-    <ProjectJsonLd
-      name={caseStudy.title}
-      description={caseStudy.overview || `Case study for ${caseStudy.title}`}
-      image={caseStudy.image}
-      datePublished={caseStudy.year ? `${caseStudy.year}-01-01` : "2023-01-01"}
-      author={caseStudy.client}
-      url={`https://schorlar.com/case-study/${slug}`}
-    />
-  <CaseStudyDetail caseStudy={caseStudy} allCaseStudies={allCaseStudies} />
-  </>
+  return (
+    <>
+      <ProjectJsonLd
+        name={caseStudy.project.title}
+        description={`Case study for ${caseStudy.project.title}`}
+        image={caseStudy.project.image}
+        datePublished={caseStudy.year ? `${caseStudy.year}-01-01` : "2023-01-01"}
+        author={caseStudy.project.client}
+        url={`https://schorlar.com/case-study/${slug}`}
+      />
+      <CaseStudyDetail caseStudy={caseStudy} allCaseStudies={allCaseStudies} />
+    </>
+  )
 }
