@@ -52,16 +52,16 @@ export default function WorkCard({
           <div className="p-4">
             <h3 className="text-xl font-bold mb-4">{title}</h3>
 
-            <div className="grid grid-cols-3 border-t border-gray-200 pt-4">
+            <div className="grid grid-cols-2 border-t border-gray-200 pt-4">
               <div className="border-r border-gray-200 pr-4">
                 <p className="text-xs text-gray-500 uppercase mb-1">COMPLETION TIME:</p>
                 <p className="font-bold">{completionTime}</p>
               </div>
 
-              <div className="border-r border-gray-200 px-4">
+              {/* <div className="border-r border-gray-200 px-4">
                 <p className="text-xs text-gray-500 uppercase mb-1">FEE CHARGED</p>
                 <p className="font-bold">{formatFee(feeCharged)}</p>
-              </div>
+              </div> */}
 
               <div className="pl-4">
                 <p className="text-xs text-gray-500 uppercase mb-1">CLIENT</p>

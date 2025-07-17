@@ -159,7 +159,7 @@ export default function HomePage({ featuredProjects, services, testimonials, abo
 
                             <div className="grid grid-cols-2 gap-8 mt-12">
                                 <div>
-                                    <p className="stat-number font-sora">{about?.projectsCompleted || "50"}+</p>
+                                    <p className="stat-number font-sora">{about?.projectsCompleted || "70"}+</p>
                                     <p className="text-gray-600 uppercase tracking-wider text-sm">SUCCESSFULLY COMPLETED PROJECTS</p>
                                 </div>
                                 <div>
