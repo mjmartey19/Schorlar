@@ -218,7 +218,7 @@ export default function HomePage({ featuredProjects, services, testimonials, abo
                                 title={project.title}
                                 image={project.image}
                                 completionTime={project.completionTime}
-                                feeCharged={project.feeCharged}
+                                // feeCharged={project.feeCharged}
                                 slug={project.slug.current}
                                 client={project.client}
                             />

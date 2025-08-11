@@ -9,7 +9,7 @@ interface WorkCardProps {
   title: string
   image: string
   completionTime: string
-  feeCharged: string
+  feeCharged?: string
   slug: string
   client?: string
 }

@@ -170,7 +170,6 @@ html {
   scrollbar-width: none; /* Firefox */
 }
 
-/* AR Shakir inspired styles */
 .hero-heading {
   font-size: clamp(3rem, 10vw, 8rem);
   line-height: 1;
@@ -187,4 +186,63 @@ html {
   font-size: clamp(3rem, 8vw, 6rem);
   line-height: 1;
   font-weight: 800;
+}
+
+/* Gallery lightbox styles */
+.gallery-lightbox {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a,
+.cursor-pointer {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Responsive gallery adjustments */
+@media (max-width: 768px) {
+  .gallery-lightbox .absolute.bottom-4.left-4 {
+    display: none;
+    /* Hide keyboard shortcuts on mobile */
+  }
+
+  .gallery-lightbox .absolute.bottom-4.right-4 {
+    max-width: 200px;
+    /* Limit caption width on mobile */
+  }
+}
+
+/* Prose styling for rich text content */
+.prose {
+  color: inherit;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+}
+
+.prose ul,
+.prose ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose em {
+  font-style: italic;
 }

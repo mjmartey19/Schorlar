@@ -4,17 +4,21 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, ChevronDown } from "lucide-react"
+import { ChevronRight, ChevronDown, Images } from "lucide-react"
 import BackToTop from "@/components/back-to-top"
 import { PortableText } from '@portabletext/react'
 import type { PortableTextComponents } from '@portabletext/react'
 import { extractYear, formatFee } from "@/lib/utils"
 import WorkCard from "./work-card"
+import CaseStudyGallery from "./case-study-gallery"
 
 interface CaseStudyDetailProps {
     caseStudy: any
     allCaseStudies: any[]
 }
+
+// Sample gallery data for demonstration
+
 
 // Custom components for PortableText with proper typing
 const portableTextComponents: PortableTextComponents = {
@@ -63,6 +67,13 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
         )
         .slice(0, 4)
 
+    // Use gallery from case study data or fallback to sample data
+    const galleryImages =
+        caseStudy.gallery && caseStudy.gallery.length > 0
+            ? caseStudy.gallery
+            : []
+
+    const hasGallery = galleryImages && galleryImages.length > 0
     // console.log("All Case Studies", allCaseStudies)
     // console.log("RelatedWorks", relatedWorks);
     return (
@@ -85,10 +96,10 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                             <p className="text-sm text-gray-500 uppercase mb-1">COMPLETION TIME</p>
                             <p className="font-bold">{caseStudy.project.completionTime}</p>
                         </div>
-                        <div>
+                        {/* <div>
                             <p className="text-sm text-gray-500 uppercase mb-1">FEE CHARGED</p>
                             <p className="font-bold">{formatFee(caseStudy.project.feeCharged)}</p>
-                        </div>
+                        </div> */}
                         <div>
                             <p className="text-sm text-gray-500 uppercase mb-1">BUILT WITH</p>
                             <p className="font-bold">
@@ -130,6 +141,24 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                     </div>
                 </div>
             </section>
+
+            {/* Project Gallery Section */}
+            {hasGallery && (
+                <section className="py-16 bg-gray-50">
+                    <div className="container">
+                        <div className="flex items-center mb-8">
+                            <Images className="h-6 w-6 mr-3 text-primary" />
+                            <h2 className="text-3xl font-bold">Project Gallery</h2>
+                        </div>
+                        <p className="text-gray-600 mb-8 max-w-3xl">
+                            Explore the design process and key deliverables for this project. Click on any image to view it in full
+                            size with detailed captions and navigate through the complete gallery.
+                        </p>
+
+                        <CaseStudyGallery images={galleryImages} className="bg-white rounded-xl p-6 shadow-sm" />
+                    </div>
+                </section>
+            )}
 
             {/* Project Details */}
             <section className="py-16">
@@ -202,10 +231,10 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                                         <p className="font-medium">{caseStudy.project.completionTime}</p>
                                     </div>
 
-                                    <div>
+                                    {/* <div>
                                         <p className="text-sm text-gray-500 mb-1">FEE CHARGED</p>
                                         <p className="font-medium">{formatFee(caseStudy.project.feeCharged)}</p>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 <div className="mt-8">
@@ -231,7 +260,7 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                                 title={item.project.title}
                                 image={item.project.image}
                                 completionTime={item.project.completionTime}
-                                feeCharged={item.project.feeCharged}
+                                // feeCharged={item.project.feeCharged}
                                 slug={item.project.slug.current}
                                 client={item.project.client}
                             />

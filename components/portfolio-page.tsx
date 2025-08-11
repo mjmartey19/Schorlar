@@ -92,7 +92,7 @@ export default function PortfolioPage({ allPortfolioItems }: PortfolioPageProps)
                                 title={item.title}
                                 image={item.image}
                                 completionTime={item.completionTime}
-                                feeCharged={item.feeCharged}
+                                // feeCharged={item.feeCharged}
                                 slug={item.slug.current}
                                 client={item.client}
                             />
