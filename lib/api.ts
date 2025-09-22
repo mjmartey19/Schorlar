@@ -13,6 +13,7 @@ export async function projects() {
       completionTime,
       feeCharged,
       client,
+      websiteUrl
       featured,
       order
     }

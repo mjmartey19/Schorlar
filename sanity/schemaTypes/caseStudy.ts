@@ -18,7 +18,7 @@ export default defineType({
       title: "Year",
       type: "date",
       options: {
-        dateFormat: "YYYY" // Only show year in the input
+        dateFormat: "YYYY" 
       },
       validation: (Rule) => Rule.required(),
       description: "Year the project was completed"

@@ -73,7 +73,16 @@ export default defineType({
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
-  
+    {
+      name: "websiteUrl",
+      title: "Website URL",
+      type: "url",
+      description: "Live website URL (if hosted)",
+      validation: (Rule: any) =>
+        Rule.uri({
+          scheme: ["http", "https"],
+        }),
+    },
     defineField({
       name: "featured",
       title: "Featured Project",
