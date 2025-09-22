@@ -4,7 +4,7 @@ import { useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, ChevronDown, Images } from "lucide-react"
+import { ChevronRight, ChevronDown, Images, ExternalLink } from "lucide-react"
 import BackToTop from "@/components/back-to-top"
 import { PortableText } from '@portabletext/react'
 import type { PortableTextComponents } from '@portabletext/react'
@@ -13,9 +13,27 @@ import { extractYear } from "@/lib/utils"
 import WorkCard from "./work-card"
 import CaseStudyGallery from "./case-study-gallery"
 
-interface ProjectRef { _id: string; title: string; slug: { current: string }; category: string; image: string; completionTime: string; client: string }
-interface Testimonial { quote: string; author: string; authorRole?: string }
-interface GalleryItem { asset: { url: string }; alt?: string; caption?: string; _key: string }
+interface ProjectRef {
+    _id: string;
+    title: string;
+    slug: { current: string };
+    category: string;
+    image: string;
+    completionTime: string;
+    client: string;
+    websiteUrl: string;
+}
+interface Testimonial {
+    quote: string;
+    author: string;
+    authorRole?: string
+}
+interface GalleryItem {
+    asset: { url: string };
+    alt?: string;
+    caption?: string;
+    _key: string
+}
 interface CaseStudyDoc {
     project: ProjectRef
     year?: string
@@ -69,6 +87,7 @@ const portableTextComponents: PortableTextComponents = {
 }
 
 export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudyDetailProps) {
+
     const imageRef = useRef<HTMLDivElement>(null)
     const [isScrolling, setIsScrolling] = useState(false)
 
@@ -150,8 +169,25 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                                 Scroll to see more
                             </div>
                         )}
+
                     </div>
                 </div>
+                {/* Website Link */}
+                {caseStudy.project.websiteUrl && (
+                    <div className="flex justify-center mt-6">
+                        <Button asChild className="bg-primary text-white hover:bg-primary/90">
+                            <a
+                                href={caseStudy.project.websiteUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center"
+                            >
+                                <ExternalLink className="mr-2 h-4 w-4" />
+                                Visit Live Website
+                            </a>
+                        </Button>
+                    </div>
+                )}
             </section>
 
             

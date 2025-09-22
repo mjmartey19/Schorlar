@@ -33,6 +33,7 @@ export async function getFeaturedProjects() {
       completionTime,
       feeCharged,
       client,
+      websiteUrl,
       featured,
       order
     }
@@ -51,7 +52,8 @@ export async function getFeaturedCaseStudies() {
       "image": image.asset->url,
       completionTime,
       feeCharged,
-      client
+      client,
+      websiteUrl
     }
   `)
   return caseStudies
@@ -68,7 +70,8 @@ export async function getCaseStudies() {
         "image": image.asset->url,
         completionTime,
         feeCharged,
-        client
+        client,
+        websiteUrl
       },
       year,
       role,
@@ -100,7 +103,8 @@ export async function getCaseStudyBySlug(slug: string) {
         "image": image.asset->url,
         completionTime,
         feeCharged,
-        client
+        client,
+        websiteUrl
       },
       year,
       role,

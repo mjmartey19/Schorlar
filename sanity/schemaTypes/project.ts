@@ -77,7 +77,7 @@ export default defineType({
       name: "websiteUrl",
       title: "Website URL",
       type: "url",
-      description: "Live website URL (if hosted)",
+      description: "Live website URL",
       validation: (Rule: any) =>
         Rule.uri({
           scheme: ["http", "https"],
