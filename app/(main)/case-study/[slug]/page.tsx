@@ -12,11 +12,11 @@ export async function generateStaticParams() {
 
   // Filter out any case studies that don't have a valid slug
   return caseStudies
-    .filter((caseStudy: any) =>
+    .filter((caseStudy: { project?: { slug?: { current?: unknown } } }) =>
       caseStudy?.project?.slug?.current &&
       typeof caseStudy.project.slug.current === 'string'
     )
-    .map((caseStudy: any) => ({
+    .map((caseStudy: { project: { slug: { current: string } } }) => ({
       slug: caseStudy.project.slug.current,
     }))
 }
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const slug = (await params).slug
 
   // Try to get from Sanity first
-  let caseStudy = await getCaseStudyBySlug(slug)
+  const caseStudy = await getCaseStudyBySlug(slug)
 
   if (!caseStudy) {
     return baseGenerateMetadata({
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
-  const  slug  = (await params).slug
+  const slug = (await params).slug
   const caseStudy = await getCaseStudyBySlug(slug)
 
   if (!caseStudy) {

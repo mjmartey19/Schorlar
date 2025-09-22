@@ -45,8 +45,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic routes for case studies
   const caseStudyRoutes = caseStudies
-  .filter((study: any) => study?.slug?.current)
-  .map((study: any) => ({
+  .filter((study: { slug?: { current?: unknown } }) => study?.slug?.current)
+  .map((study: { slug: { current: string } }) => ({
     url: `${baseUrl}/case-study/${study.slug.current}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,

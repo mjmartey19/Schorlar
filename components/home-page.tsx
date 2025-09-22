@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ChevronRight, Star } from "lucide-react"
+import { ArrowRight, ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
 import WorkCard from "@/components/work-card"
 import ServiceCard from "@/components/service-card"
@@ -19,11 +19,35 @@ const fadeIn = {
     },
 }
 
+interface FeaturedProject {
+    _id: string
+    title: string
+    image: string
+    completionTime: string
+    slug: { current: string }
+    client: string
+}
+
+interface ServiceDoc { _id: string }
+interface TestimonialDoc { _id: string }
+
+interface AboutDoc {
+    name?: string
+    shortBio?: string
+    heroImage?: string
+    aboutImage?: string
+    role?: string
+    company?: string
+    bio?: string[]
+    projectsCompleted?: string
+    yearsExperience?: string
+}
+
 interface HomePageProps {
-    featuredProjects: any[]
-    services: any[]
-    testimonials: any[]
-    about: any
+    featuredProjects: FeaturedProject[]
+    services: ServiceDoc[]
+    testimonials: TestimonialDoc[]
+    about: AboutDoc
 }
 
 export default function HomePage({ featuredProjects, services, testimonials, about }: HomePageProps) {
@@ -65,8 +89,8 @@ export default function HomePage({ featuredProjects, services, testimonials, abo
                                 transition={{ duration: 0.7, delay: 0.6 }}
                             >
                                 <Button className="bg-black text-white hover:bg-gray-800 font-sora group" asChild>
-                                    <Link href="/contact" className="flex items-center">
-                                        Let's Talk
+                            <Link href="/contact" className="flex items-center">
+                                        Let&apos;s Talk
                                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                                     </Link>
                                 </Button>
@@ -171,7 +195,7 @@ export default function HomePage({ featuredProjects, services, testimonials, abo
                             <div className="mt-12">
                                 <Button className="bg-black text-white hover:bg-gray-800 font-sora group" asChild>
                                     <Link href="/contact" className="flex items-center">
-                                        Let's Talk
+                                        Let&apos;s Talk
                                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                                     </Link>
                                 </Button>
@@ -194,7 +218,7 @@ export default function HomePage({ featuredProjects, services, testimonials, abo
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {services.map((service: any, index: number) => (
+                        {services.map((service: ServiceDoc, index: number) => (
                             <ServiceCard key={service._id} service={service} delay={index * 0.2} />
                         ))}
                     </div>
@@ -212,7 +236,7 @@ export default function HomePage({ featuredProjects, services, testimonials, abo
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {featuredProjects.map((project: any) => (
+                        {featuredProjects.map((project: FeaturedProject) => (
                             <WorkCard
                                 key={project._id}
                                 title={project.title}
@@ -241,11 +265,11 @@ export default function HomePage({ featuredProjects, services, testimonials, abo
                 <div className="container">
                     <div className="text-center mb-16">
                         <h2 className="section-title">Client Testimonials</h2>
-                        <p className="section-subtitle">Here's what my clients have to say about working with me.</p>
+                        <p className="section-subtitle">Here&apos;s what my clients have to say about working with me.</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {testimonials.map((testimonial: any, index: number) => (
+                        {testimonials.map((testimonial: TestimonialDoc, index: number) => (
                             <TestimonialCard key={testimonial._id} testimonial={testimonial} delay={index * 0.2} />
                         ))}
                     </div>
@@ -258,7 +282,7 @@ export default function HomePage({ featuredProjects, services, testimonials, abo
                     <div className="text-center mb-16">
                         <h2 className="section-title">Get In Touch</h2>
                         <p className="section-subtitle">
-                            Have a project in mind? Let's discuss how I can help bring your vision to life.
+                            Have a project in mind? Let&apos;s discuss how I can help bring your vision to life.
                         </p>
                     </div>
 

@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils"
 interface GalleryImage {
     _key: string
     asset: {
-        _ref: string
+        _ref?: string
         url: string
     }
-    alt: string
+    alt?: string
     caption?: string
 }
 
@@ -26,6 +26,25 @@ export default function CaseStudyGallery({ images, className }: CaseStudyGallery
     const [isLightboxOpen, setIsLightboxOpen] = useState(false)
     const [lightboxIndex, setLightboxIndex] = useState(0)
     const [isZoomed, setIsZoomed] = useState(false)
+
+
+    const goToNext = useCallback(() => {
+        if (isLightboxOpen) {
+            setLightboxIndex((prev) => (prev + 1) % images.length)
+        } else {
+            setCurrentIndex((prev) => (prev + 1) % images.length)
+        }
+        setIsZoomed(false)
+    }, [images.length, isLightboxOpen])
+
+    const goToPrevious = useCallback(() => {
+        if (isLightboxOpen) {
+            setLightboxIndex((prev) => (prev - 1 + images.length) % images.length)
+        } else {
+            setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
+        }
+        setIsZoomed(false)
+    }, [images.length, isLightboxOpen])
 
     // Handle keyboard navigation
     useEffect(() => {
@@ -55,7 +74,7 @@ export default function CaseStudyGallery({ images, className }: CaseStudyGallery
 
         document.addEventListener("keydown", handleKeyDown)
         return () => document.removeEventListener("keydown", handleKeyDown)
-    }, [isLightboxOpen, lightboxIndex, isZoomed])
+    }, [isLightboxOpen, goToNext, goToPrevious, isZoomed])
 
     // Prevent body scroll when lightbox is open
     useEffect(() => {
@@ -70,23 +89,7 @@ export default function CaseStudyGallery({ images, className }: CaseStudyGallery
         }
     }, [isLightboxOpen])
 
-    const goToNext = useCallback(() => {
-        if (isLightboxOpen) {
-            setLightboxIndex((prev) => (prev + 1) % images.length)
-        } else {
-            setCurrentIndex((prev) => (prev + 1) % images.length)
-        }
-        setIsZoomed(false)
-    }, [images.length, isLightboxOpen])
-
-    const goToPrevious = useCallback(() => {
-        if (isLightboxOpen) {
-            setLightboxIndex((prev) => (prev - 1 + images.length) % images.length)
-        } else {
-            setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
-        }
-        setIsZoomed(false)
-    }, [images.length, isLightboxOpen])
+    
 
     const openLightbox = (index: number) => {
         setLightboxIndex(index)
@@ -194,7 +197,7 @@ export default function CaseStudyGallery({ images, className }: CaseStudyGallery
                                 onClick={() => setCurrentIndex(index)}
                                 aria-label={`View image ${index + 1}`}
                             >
-                                <Image src={image.asset?.url || "/placeholder.svg"} alt={image.alt} fill className="object-cover" />
+                                <Image src={image.asset?.url || "/placeholder.svg"} alt={image.alt || ""} fill className="object-cover" />
                             </button>
                         ))}
                     </div>

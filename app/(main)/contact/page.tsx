@@ -37,7 +37,7 @@ export default function Contact() {
               transition={{ delay: 0.2 }}
               className="text-xl text-gray-600 max-w-3xl mx-auto"
             >
-              Have a project in mind? Let's discuss how I can help bring your vision to life.
+              Have a project in mind? Let&apos;s discuss how I can help bring your vision to life.
             </motion.p>
           </div>
         </div>

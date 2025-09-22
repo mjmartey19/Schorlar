@@ -3,13 +3,11 @@
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { extractYear, formatFee } from "@/lib/utils"
 
 interface WorkCardProps {
   title: string
   image: string
   completionTime: string
-  feeCharged?: string
   slug: string
   client?: string
 }
@@ -18,7 +16,6 @@ export default function WorkCard({
   title,
   image,
   completionTime,
-  feeCharged,
   slug,
   client,
 }: WorkCardProps) {

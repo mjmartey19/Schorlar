@@ -2,7 +2,7 @@ import { siteConfig } from "@/lib/seo-config"
 
 interface JsonLdProps {
     type: "Person" | "Organization" | "WebSite" | "WebPage" | "Article" | "BreadcrumbList" | "Project"
-    data: Record<string, any>
+    data: Record<string, unknown>
 }
 
 export default function JsonLd({ type, data }: JsonLdProps) {

@@ -209,7 +209,7 @@ export default function Pricing() {
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold mb-4">Need a Custom Solution?</h2>
               <p className="text-gray-600">
-                Have a project that doesn't fit neatly into these packages? I offer custom solutions tailored to your
+                Have a project that doesn&apos;t fit neatly into these packages? I offer custom solutions tailored to your
                 specific requirements and budget.
               </p>
             </div>

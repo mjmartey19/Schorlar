@@ -1,20 +1,37 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, ChevronDown, Images, ExternalLink } from "lucide-react"
+import { ChevronRight, ChevronDown, Images } from "lucide-react"
 import BackToTop from "@/components/back-to-top"
 import { PortableText } from '@portabletext/react'
 import type { PortableTextComponents } from '@portabletext/react'
-import { extractYear, formatFee } from "@/lib/utils"
+import type { PortableTextBlock } from '@portabletext/types'
+import { extractYear } from "@/lib/utils"
 import WorkCard from "./work-card"
 import CaseStudyGallery from "./case-study-gallery"
 
+interface ProjectRef { _id: string; title: string; slug: { current: string }; category: string; image: string; completionTime: string; client: string }
+interface Testimonial { quote: string; author: string; authorRole?: string }
+interface GalleryItem { asset: { url: string }; alt?: string; caption?: string; _key: string }
+interface CaseStudyDoc {
+    project: ProjectRef
+    year?: string
+    role?: string
+    tools?: string[]
+    overview?: PortableTextBlock[]
+    challenge?: PortableTextBlock[]
+    solution?: PortableTextBlock[]
+    results?: PortableTextBlock[]
+    testimonial?: Testimonial
+    gallery?: GalleryItem[]
+}
+
 interface CaseStudyDetailProps {
-    caseStudy: any
-    allCaseStudies: any[]
+    caseStudy: CaseStudyDoc
+    allCaseStudies: CaseStudyDoc[]
 }
 
 // Sample gallery data for demonstration
@@ -23,7 +40,7 @@ interface CaseStudyDetailProps {
 // Custom components for PortableText with proper typing
 const portableTextComponents: PortableTextComponents = {
     types: {
-        image: ({ value }: { value: any }) => (
+        image: ({ value }: { value: { asset: { url: string }; alt?: string; caption?: string } }) => (
             <div className="my-4">
                 <Image
                     src={value.asset.url}
@@ -39,10 +56,11 @@ const portableTextComponents: PortableTextComponents = {
         ),
     },
     marks: {
-        link: ({ children, value }: { children?: React.ReactNode; value?: any }) => {
-            const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
+        link: ({ children, value }: { children?: React.ReactNode; value?: { href?: string } }) => {
+            const href = value?.href ?? '#'
+            const rel = !href.startsWith('/') ? 'noreferrer noopener' : undefined
             return (
-                <a href={value.href} rel={rel} className="text-blue-600 hover:underline">
+                <a href={href} rel={rel} className="text-blue-600 hover:underline">
                     {children}
                 </a>
             )
@@ -51,14 +69,8 @@ const portableTextComponents: PortableTextComponents = {
 }
 
 export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudyDetailProps) {
-    const [isLoaded, setIsLoaded] = useState(false)
     const imageRef = useRef<HTMLDivElement>(null)
     const [isScrolling, setIsScrolling] = useState(false)
-
-    // console.log("Case Study", caseStudy)
-    useEffect(() => {
-        setIsLoaded(true)
-    }, [])
 
     // Get related works based on the current case study category
     const relatedWorks = allCaseStudies
@@ -142,23 +154,7 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                 </div>
             </section>
 
-            {/* Website Link */}
-            {caseStudy.websiteUrl && (
-                <div className="flex justify-center mt-6">
-                    <Button asChild className="bg-primary text-white hover:bg-primary/90">
-                        <a
-                            href={caseStudy.websiteUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center"
-                        >
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Visit Live Website
-                        </a>
-                    </Button>
-                </div>
-            )}
-
+            
             {/* Project Gallery Section */}
             {hasGallery && (
                 <section className="py-16 bg-gray-50">
@@ -185,7 +181,7 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                             <h2 className="text-3xl font-bold mb-6">Project Overview</h2>
                             <div className="prose max-w-none text-gray-600 mb-8 text-lg leading-relaxed">
                                 <PortableText
-                                    value={caseStudy.overview}
+                                    value={caseStudy.overview ?? []}
                                     components={portableTextComponents}
                                 />
                             </div>
@@ -193,7 +189,7 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                             <h3 className="text-2xl font-bold mb-4">The Challenge</h3>
                             <div className="prose max-w-none text-gray-600 mb-8 text-lg leading-relaxed">
                                 <PortableText
-                                    value={caseStudy.challenge}
+                                    value={caseStudy.challenge ?? []}
                                     components={portableTextComponents}
                                 />
                             </div>
@@ -201,7 +197,7 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                             <h3 className="text-2xl font-bold mb-4">The Solution</h3>
                             <div className="prose max-w-none text-gray-600 mb-8 text-lg leading-relaxed">
                                 <PortableText
-                                    value={caseStudy.solution}
+                                    value={caseStudy.solution ?? []}
                                     components={portableTextComponents}
                                 />
                             </div>
@@ -209,7 +205,7 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                             <h3 className="text-2xl font-bold mb-4">The Results</h3>
                             <div className="prose max-w-none text-gray-600 mb-8 text-lg leading-relaxed">
                                 <PortableText
-                                    value={caseStudy.results}
+                                    value={caseStudy.results ?? []}
                                     components={portableTextComponents}
                                 />
                             </div>
@@ -217,7 +213,7 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
                             {caseStudy.testimonial && caseStudy.testimonial.authorRole && (
                                 <div className="bg-gray-50 p-8 rounded-xl mb-8">
                                     <h3 className="text-xl font-bold mb-4">Client Testimonial</h3>
-                                    <blockquote className="text-gray-600 italic mb-4">"{caseStudy.testimonial.quote}"</blockquote>
+                                    <blockquote className="text-gray-600 italic mb-4">&quot;{caseStudy.testimonial.quote}&quot;</blockquote>
                                     <p className="font-medium">— {caseStudy.testimonial.author}, {caseStudy.testimonial.authorRole}</p>
                                 </div>
                             )}
@@ -235,7 +231,7 @@ export default function CaseStudyDetail({ caseStudy, allCaseStudies }: CaseStudy
 
                                     <div>
                                         <p className="text-sm text-gray-500 mb-1">YEAR</p>
-                                        <p className="font-medium">{extractYear(caseStudy.year)}</p>
+                                        <p className="font-medium">{extractYear(caseStudy.year || "")}</p>
                                     </div>
 
                                     <div>

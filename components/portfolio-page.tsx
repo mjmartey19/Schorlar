@@ -19,7 +19,15 @@ const fadeIn = {
 }
 
 interface PortfolioPageProps {
-    allPortfolioItems: any[]
+    allPortfolioItems: {
+        _id: string
+        title: string
+        image: string
+        completionTime: string
+        slug: { current: string }
+        client: string
+        category: string
+    }[]
 }
 
 export default function PortfolioPage({ allPortfolioItems }: PortfolioPageProps) {
@@ -107,7 +115,7 @@ export default function PortfolioPage({ allPortfolioItems }: PortfolioPageProps)
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
                         <p className="text-xl text-gray-600 mb-8">
-                            Let's collaborate to create something amazing together. Get in touch to discuss your project needs.
+                            Let&apos;s collaborate to create something amazing together. Get in touch to discuss your project needs.
                         </p>
                         <Button className="btn-primary" asChild>
                             <Link href="/contact">
