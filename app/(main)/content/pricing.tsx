@@ -26,7 +26,7 @@ export const pricingData = {
       {
         id: "fullstack-standard",
         name: "Standard",
-        price: "₵5,000",
+        price: "₵20,000",
         description: "Comprehensive solution for growing businesses",
         features: [
           "Responsive website (up to 10 pages)",
@@ -48,7 +48,7 @@ export const pricingData = {
       {
         id: "fullstack-premium",
         name: "Premium",
-        price: "₵10,000+",
+        price: "₵25,000+",
         description: "Advanced solutions for established businesses",
         features: [
           "Custom web application",
@@ -98,7 +98,7 @@ export const pricingData = {
       {
         id: "uiux-standard",
         name: "Standard",
-        price: "₵5,000",
+        price: "₵10,000",
         description: "Comprehensive design with user experience focus",
         features: [
           "UI audit & recommendations",
@@ -121,7 +121,7 @@ export const pricingData = {
       {
         id: "uiux-premium",
         name: "Premium",
-        price: "₵8,000+",
+        price: "₵15,000+",
         description: "Enterprise-grade design system",
         features: [
           "UI audit & recommendations",
