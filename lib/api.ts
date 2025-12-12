@@ -101,6 +101,7 @@ export async function getCaseStudyBySlug(slug: string) {
         "slug": slug.current,
         category,
         "image": image.asset->url,
+        "imageObject": image,
         completionTime,
         feeCharged,
         client,

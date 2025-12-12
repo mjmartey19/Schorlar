@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { generateMetadata as baseGenerateMetadata } from "@/lib/seo-config"
 import { ProjectJsonLd } from "@/components/json-ld"
+import { urlFor } from "@/sanity/lib/image"
 
 export const revalidate = 60 // Revalidate this page every 60 seconds
 
@@ -35,11 +36,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     })
   }
 
+  // Crop image to show top portion for OG image (1200x630 standard size)
+  const ogImageUrl = caseStudy.project.imageObject
+    ? urlFor(caseStudy.project.imageObject)
+      .width(1200)
+      .height(630)
+      .fit('crop')
+      .crop('top')
+      .url()
+    : caseStudy.project.image
+
   return baseGenerateMetadata({
     title: `${caseStudy.project.title} | Case Study`,
     description: `Case study for ${caseStudy.project.title} - ${caseStudy.project.category} project for ${caseStudy.project.client}`,
     path: `/case-study/${slug}`,
-    ogImage: caseStudy.project.image,
+    ogImage: ogImageUrl,
   })
 }
 
@@ -54,7 +65,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   // Get all case studies for related works
   const allCaseStudies = await getCaseStudies()
 
-  
+
 
   return (
     <>
