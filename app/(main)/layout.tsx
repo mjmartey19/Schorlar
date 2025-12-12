@@ -6,6 +6,7 @@ import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { siteConfig } from "@/lib/seo-config"
 import type { Metadata } from "next"
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const sora = Sora({
@@ -81,6 +82,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <Header />
           <main>{children}</main>
+          <Analytics />
           <Footer />
         </ThemeProvider>
       </body>
