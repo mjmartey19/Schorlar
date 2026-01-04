@@ -3,7 +3,7 @@ export const siteConfig = {
   name: "Scholar",
   description: "Experienced web designer and developer specializing in Mobile & Web Application, Graphic Design, UI/UX and Creative Digital Solutions.",
   url: "https://schorlar.com",
-  ogImage: "https://cdn.sanity.io/images/8cbl49nv/production/19502a19db131341a0492fe1a9167db35cae7107-3648x4560.jpg",
+  ogImage: "https://cdn.sanity.io/images/8cbl49nv/production/592e8643b24045f8fed601e917b5cf4eccfe0692-3548x4435.jpg",
   links: {
     twitter: "https://twitter.com/scholar_studios",
     instagram: "https://www.instagram.com/scholar_studios",
