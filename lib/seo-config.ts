@@ -1,15 +1,19 @@
 // Central configuration for SEO metadata
 export const siteConfig = {
   name: "Scholar",
-  description: "Experienced web designer and developer specializing in Mobile & Web Application, Graphic Design, UI/UX and Creative Digital Solutions.",
+  description:
+    "Experienced web designer and developer specializing in Mobile & Web Application, Graphic Design, UI/UX and Creative Digital Solutions.",
   url: "https://schorlar.com",
-  ogImage: "https://cdn.sanity.io/images/8cbl49nv/production/19502a19db131341a0492fe1a9167db35cae7107-3648x4560.jpg",
-  links: {
+  ogImage:
+    "https://cdn.sanity.io/images/8cbl49nv/production/4b623c27caad68218f89dafc8a60eb173549c1fc-3648x4560.jpg",
+
+  socials: {
     twitter: "https://twitter.com/scholar_studios",
     instagram: "https://www.instagram.com/scholar_studios",
     linkedin: "https://www.linkedin.com/in/jamel-martey-944981228/",
     github: "https://github.com/mjmartey19",
   },
+
   keywords: [
     "web design",
     "web development",
@@ -24,10 +28,12 @@ export const siteConfig = {
     "branding",
     "logo design",
   ],
+
   author: {
     name: "Jamel Martey",
     url: "https://schorlar.com",
   },
+
   creator: "Jamel Martey",
   themeColor: "#0f172a",
 }
