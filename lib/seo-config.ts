@@ -84,7 +84,8 @@ export function generateMetadata({
       title,
       description: metaDescription,
       images: [ogImage],
-      creator: "@scholar_studios",
+      site: "scholar_studios",
+      creator: "scholar_studios",
     },
   }
 }
