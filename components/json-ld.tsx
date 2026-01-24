@@ -46,10 +46,10 @@ export function OrganizationJsonLd() {
                 url: siteConfig.url,
                 logo: `${siteConfig.url}/logo.png`,
                 sameAs: [
-                    siteConfig.links.twitter,
-                    siteConfig.links.instagram,
-                    siteConfig.links.linkedin,
-                    siteConfig.links.github,
+                    siteConfig.socials.twitter,
+                    siteConfig.socials.instagram,
+                    siteConfig.socials.linkedin,
+                    siteConfig.socials.github,
                 ],
                 contactPoint: {
                     "@type": "ContactPoint",
@@ -77,10 +77,10 @@ export function PersonJsonLd() {
                     name: siteConfig.name,
                 },
                 sameAs: [
-                    siteConfig.links.twitter,
-                    siteConfig.links.instagram,
-                    siteConfig.links.linkedin,
-                    siteConfig.links.github,
+                    siteConfig.socials.twitter,
+                    siteConfig.socials.instagram,
+                    siteConfig.socials.linkedin,
+                    siteConfig.socials.github,
                 ],
             }}
         />
