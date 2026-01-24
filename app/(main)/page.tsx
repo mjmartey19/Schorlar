@@ -1,17 +1,19 @@
 import { getFeaturedProjects, getServices, getTestimonials, getAbout } from "@/lib/api"
 import HomePage from "@/components/home-page"
 import type { Metadata } from "next"
-import { siteConfig, generateMetadata } from "@/lib/seo-config"
+import { siteConfig, generateMetadata as getSeoMetadata } from "@/lib/seo-config"
 import { WebsiteJsonLd, OrganizationJsonLd, PersonJsonLd } from "@/components/json-ld"
 
 export const revalidate = 60 // Revalidate this page every 60 seconds
 
-export const metadata: Metadata = generateMetadata({
-  title: `${siteConfig.name} | Creative Designer & Developer`,
-  description:
-    "Experienced web designer and developer specializing in Mobile & Web Application, Graphic Design, UI/UX and Creative Digital Solutions.",
-  path: "/",
-})
+export async function generateMetadata(): Promise<Metadata> {
+  return getSeoMetadata({
+    title: `${siteConfig.name} | Creative Designer & Developer`,
+    description:
+      "Experienced web designer and developer specializing in Mobile & Web Application, Graphic Design, UI/UX and Creative Digital Solutions.",
+    path: "/",
+  })
+}
 
 export default async function Home() {
   const featuredProjects = await getFeaturedProjects()
@@ -28,7 +30,7 @@ export default async function Home() {
       <WebsiteJsonLd />
       <OrganizationJsonLd />
       <PersonJsonLd />
-    <HomePage featuredProjects={featuredProjects} services={services} testimonials={testimonials} about={about} />
+      <HomePage featuredProjects={featuredProjects} services={services} testimonials={testimonials} about={about} />
     </>
   )
 }
