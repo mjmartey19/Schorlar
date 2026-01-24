@@ -5,7 +5,7 @@ export const siteConfig = {
     "Experienced web designer and developer specializing in Mobile & Web Application, Graphic Design, UI/UX and Creative Digital Solutions.",
   url: "https://schorlar.com",
   ogImage:
-    "https://cdn.sanity.io/images/8cbl49nv/production/14c2497e7f3c7d532cba69810883a007d3bca9c4-3648x4560.jpg",
+    "https://cdn.sanity.io/images/8cbl49nv/production/90719649cfdeacde94e822351531905acda3b12a-3648x4560.jpg",
 
   socials: {
     twitter: "https://twitter.com/scholar_studios",
