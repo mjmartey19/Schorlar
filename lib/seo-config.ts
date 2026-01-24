@@ -79,13 +79,13 @@ export function generateMetadata({
         },
       ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description: metaDescription,
-      images: [ogImage],
-      site: "scholar_studios",
-      creator: "scholar_studios",
-    },
+    // twitter: {
+    //   card: "summary_large_image",
+    //   title,
+    //   description: metaDescription,
+    //   images: [ogImage],
+    //   site: "scholar_studios",
+    //   creator: "scholar_studios",
+    // },
   }
 }
